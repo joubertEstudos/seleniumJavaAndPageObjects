@@ -31,17 +31,12 @@ public class AbrirSite extends BaseTest {
     esperarPaginaCarregar();
     indexPage.search("dress");
     esperarPaginaCarregar();
-    List<WebElement> listOfElements = searchPage.getDivs();
-    searchPage.addItensLowerThen(listOfElements, 30);
-    //    searchPage.AddAllItensToCart(listOfElements);
+    searchPage.addItensLowerThen(searchPage.getDivs(), 30);
+    //    searchPage.AddAllItensToCart(searchPage.getDivs());
     esperarPaginaCarregar();  
     searchPage.checkoutCar();
     esperarPaginaCarregar();
-    System.out.println("Total Price: $" + cartPage.getTotalPrice());
-if (cartPage.getTotalPrice() < 160) {
-      cartPage.procedToCheckout();
-      Thread.sleep(3000);
-    }
+    cartPage.checkoutMAX(2000);
   }
   
   @After
